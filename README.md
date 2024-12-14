@@ -179,7 +179,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 ## **Contact**
 
 Have questions or feedback? Reach out to us:
-- Email: support@eternal.com
+- Email: support@eternalsdk.com
 - GitHub Issues: [GitHub Issues](https://github.com/your-repo/eternal/issues)
 
 ---
