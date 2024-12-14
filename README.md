@@ -45,7 +45,7 @@ With **Eternal**, the future of your app is in your hands, not your provider’s
 
 ### **Installation**
 
-Install Eternal using npm or yarn:
+Step 1: Install Eternal using npm or yarn:
 
 ```bash
 npm install eternal
@@ -55,18 +55,22 @@ yarn add eternal
 pnpm add eternal
 ```
 
----
+Step 2: To use specific providers (e.g., Google Analytics, FirebaseAuth, Stripe), install their adapters as well. 
+Check the documentation for available adapters and installation commands.
+
+<a href="">Click Here To Add Adapters</a>
 
 ### **Usage**
 
-Here is a step-by-step guide on how to use Eternal:
+Here is an example of how to use Eternal:
 
-#### **1. Initialize the SDK**
+#### **Initialize the SDK**
 
 ```typescript
 import { Eternal } from 'eternal';
+import { GoogleAnalyticsAdapter } from '@eternal/google-analytics-adapter';
+import { FirebaseAuthAdapter } from '@eternal/firebase-auth-adapter';
 
-// Define your configuration
 const sdk = new Eternal({
   analytics: new AnalyticsModule({
     adapter: new GoogleAnalyticsAdapter({ apiKey: 'your-google-api-key' }),
@@ -77,61 +81,19 @@ const sdk = new Eternal({
 });
 ```
 
-#### **2. Track Events with Analytics**
+#### **Using the SDK**
 
 ```typescript
+//Track Events with the Analytics Module
 sdk.analytics?.track('user_signup', { method: 'email' });
-```
 
-#### **3. Authenticate Users**
-
-```typescript
+Or
+//Authenticate Users with the Auth Module
 sdk.auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
+
+Any many more..
 ```
 
-#### **4. Switch Providers**
-
-Switching providers is simple and requires minimal changes to your configuration.
-
-```typescript
-sdk.analytics?.updateAdapter(
-  new MixpanelAdapter({ apiKey: 'your-mixpanel-api-key' })
-);
-```
-
-#### **5. Add or Update Modules Dynamically**
-
-You can add or update modules after initializing the SDK.
-
-```typescript
-sdk.addModule(
-  'payments',
-  new PaymentModule({
-    adapter: new StripeAdapter({ apiKey: 'your-stripe-api-key' }),
-  })
-);
-```
-
----
-
-### **Configuration**
-
-Eternal uses a flexible configuration object to define the modules and their respective adapters:
-
-```typescript
-const config = {
-  analytics: new AnalyticsModule({
-    adapter: new GoogleAnalyticsAdapter({ apiKey: 'your-google-api-key' }),
-  }),
-  auth: new AuthModule({
-    adapter: new FirebaseAuthAdapter({ apiKey: 'your-firebase-api-key' }),
-  }),
-};
-
-const sdk = new Eternal(config);
-```
-
----
 
 ### **Supported Modules and Providers**
 
@@ -161,7 +123,7 @@ We welcome contributions! If you have ideas for improvements or new provider int
 
 ## **License**
 
-This project is licensed under the MIT License. See the `LICENSE` file for details.
+This project is licensed under the Apache 2.0 License. See the `LICENSE` file for details.
 
 ---
 
@@ -169,7 +131,7 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 Have questions or feedback? Reach out to us:
 - Email: support@eternalsdk.com
-- GitHub Issues: [GitHub Issues](https://github.com/your-repo/eternal/issues)
+- GitHub Issues: [GitHub Issues](https://github.com/dvir-daniel/eternal/issues)
 
 ---
 
