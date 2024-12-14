@@ -66,30 +66,38 @@ Here is an example of how to use Eternal:
 
 #### **Initialize the SDK**
 
+Create a File Named eternal.ts
+In your project directory, create a file named eternal.ts and add the following code:
+
 ```typescript
 import { Eternal } from 'eternal';
 import { GoogleAnalyticsAdapter } from '@eternal/google-analytics-adapter';
 import { FirebaseAuthAdapter } from '@eternal/firebase-auth-adapter';
 
-const sdk = new Eternal({
+const eternal = new Eternal({
   analytics: new AnalyticsModule({
-    adapter: new GoogleAnalyticsAdapter({ apiKey: 'your-google-api-key' }),
+    adapter: new MixPanelAdapter({ apiKey: 'your-google-api-key' }),
   }),
   auth: new AuthModule({
-    adapter: new FirebaseAuthAdapter({ apiKey: 'your-firebase-api-key' }),
+    adapter: new AuthJsAdapter({ apiKey: 'your-firebase-api-key' }),
   }),
 });
+
+const analytics = eternal.analytics
+const auth = eternal.auth
+
 ```
 
 #### **Using the SDK**
 
 ```typescript
-//Track Events with the Analytics Module
-sdk.analytics?.track('user_signup', { method: 'email' });
+import { analytics, auth } from './eternal';
 
-Or
-//Authenticate Users with the Auth Module
-sdk.auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
+// Track an event
+analytics?.track('user_signup', { method: 'email' });
+
+// Authenticate a user
+auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
 
 Any many more..
 ```
