@@ -52,6 +52,8 @@ With **Eternal**, the future of your app is in your hands, not your provider’s
 
 ---
 
+
+
 ## **Getting Started**
 
 ### **Installation**
@@ -62,92 +64,89 @@ Install Eternal using npm or yarn:
 npm install eternal
 # or
 yarn add eternal
+# or
+pnpm add eternal
 ```
 
 ---
 
 ### **Usage**
 
-Here is an example of how to use Eternal:
+Here is a step-by-step guide on how to use Eternal:
 
-#### **Initialize the SDK**
+#### **1. Initialize the SDK**
 
 ```typescript
 import { Eternal } from 'eternal';
 
+// Define your configuration
 const sdk = new Eternal({
-  analytics: { provider: 'GoogleAnalytics', apiKey: 'your-google-api-key' },
-  auth: { provider: 'FirebaseAuth', apiKey: 'your-firebase-api-key' },
+  analytics: new AnalyticsModule({
+    adapter: new GoogleAnalyticsAdapter({ apiKey: 'your-google-api-key' }),
+  }),
+  auth: new AuthModule({
+    adapter: new FirebaseAuthAdapter({ apiKey: 'your-firebase-api-key' }),
+  }),
 });
 ```
 
-#### **Use the Analytics Module**
+#### **2. Track Events with Analytics**
 
 ```typescript
-sdk.analytics.track('user_signup', { method: 'email' });
+sdk.analytics?.track('user_signup', { method: 'email' });
 ```
 
-#### **Use the Auth Module**
+#### **3. Authenticate Users**
 
 ```typescript
-sdk.auth.signInWithEmailAndPassword('user@example.com', 'securePassword');
+sdk.auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
 ```
 
-#### **Switch Providers Dynamically**
+#### **4. Switch Providers**
+
+Switching providers is simple and requires minimal changes to your configuration.
 
 ```typescript
-sdk.config.updateProvider('analytics', 'Mixpanel', { apiKey: 'your-mixpanel-api-key' });
+sdk.analytics?.updateAdapter(
+  new MixpanelAdapter({ apiKey: 'your-mixpanel-api-key' })
+);
 ```
 
----
+#### **5. Add or Update Modules Dynamically**
 
-## **Modules**
+You can add or update modules after initializing the SDK.
 
-### **Analytics Module**
-- Track user events and behavior.
-- Supported providers: Google Analytics, Mixpanel, Segment.
-
-#### Example
 ```typescript
-sdk.analytics.track('page_view', { page: '/home' });
-```
-
-### **Auth Module**
-- Manage user authentication.
-- Supported providers: FirebaseAuth, Auth0, Okta.
-
-#### Example
-```typescript
-sdk.auth.signInWithEmailAndPassword('user@example.com', 'password123');
-sdk.auth.signOut();
+sdk.addModule(
+  'payments',
+  new PaymentModule({
+    adapter: new StripeAdapter({ apiKey: 'your-stripe-api-key' }),
+  })
+);
 ```
 
 ---
 
-## **Configuration**
+### **Configuration**
 
-Eternal uses a configuration object to define providers and their respective credentials:
+Eternal uses a flexible configuration object to define the modules and their respective adapters:
 
 ```typescript
 const config = {
-  analytics: { provider: 'GoogleAnalytics', apiKey: 'your-google-api-key' },
-  auth: { provider: 'FirebaseAuth', apiKey: 'your-firebase-api-key' },
+  analytics: new AnalyticsModule({
+    adapter: new GoogleAnalyticsAdapter({ apiKey: 'your-google-api-key' }),
+  }),
+  auth: new AuthModule({
+    adapter: new FirebaseAuthAdapter({ apiKey: 'your-firebase-api-key' }),
+  }),
 };
 
 const sdk = new Eternal(config);
 ```
 
-### **Updating Configuration**
-
-Update providers or settings dynamically:
-
-```typescript
-sdk.config.updateProvider('auth', 'Auth0', { clientId: 'your-auth0-client-id', domain: 'your-auth0-domain' });
-```
-
 ---
 
-## **Supported Providers**
+### **Supported Modules and Providers**
 
 | Module      | Supported Providers                         |
 |-------------|---------------------------------------------|
@@ -155,6 +154,9 @@ sdk.config.updateProvider('auth', 'Auth0', { clientId: 'your-auth0-client-id', d
 | Auth        | FirebaseAuth, Auth0, Okta                   |
 | Storage     | AWS S3, Google Cloud Storage, Azure Blob    |
 | Payments    | Stripe, PayPal, Square                      |
+
+For more details on supported modules and usage, refer to the [Documentation](#).
+
 
 ---
 
