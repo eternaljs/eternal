@@ -83,8 +83,11 @@ const eternal = new Eternal({
   }),
 });
 
-const analytics = eternal.analytics
-const auth = eternal.auth
+// Default export with custom named properties for easier imports
+export default {
+  analytics: sdk.analytics,
+  auth: sdk.auth,
+};
 
 ```
 
