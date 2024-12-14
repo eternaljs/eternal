@@ -1,8 +1,13 @@
-# Eternal
+<div align="center">
+  <a href="">
+    <img src="https://github.com/dvir-daniel/eternal/blob/main/media/cover.png" alt="Logo">
+  </a>
+
+<br /><br />
 
 Eternal is a powerful, modular framework designed to simplify integration with multiple third-party services, such as analytics, authentication, and more. It enables developers to interact with a single unified API, allowing for seamless upgrades, provider switching, and improved developer experience.
 
----
+</div>
 
 ## **Features**
 
