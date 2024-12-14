@@ -3,7 +3,7 @@
     <img src="https://github.com/dvir-daniel/eternal/blob/main/media/cover.png" alt="Logo">
   </a>
 
-<br /><br />
+<br />
 
 <h1>One SDK to seamlessly integrate, switch providers, upgrade effortlessly without breaking changes, and scale third-party services.</h1>
 
