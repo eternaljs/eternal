@@ -1,0 +1,2 @@
+In any case we want yo improve our API, we need to provide migration tool for our developers.
+If your PR includes api breaking changes, please also create a tool that provides way to upgrade.
