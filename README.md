@@ -8,7 +8,7 @@
 <h1>One SDK to seamlessly integrate, switch providers, upgrade effortlessly without breaking changes, and expand third-party capabilities <br />(In Construction)</h1>
 
 
-Eternal is a powerful, modular framework designed to simplify integration with multiple third-party services, such as analytics, authentication, and more. It enables developers to interact with a single unified API, allowing for seamless upgrades, provider switching, and improved developer experience.
+Eternal is a modular framework that empowers developers to integrate third-party services effortlessly, switch providers without disruption, and ensure your app stays future-proof—no matter how the APIs or technologies evolve. It enables developers to interact with a single unified API, allowing for seamless upgrades, provider switching, and improved developer experience.
 
 </div>
 
