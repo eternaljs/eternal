@@ -1,0 +1,217 @@
+# General
+*.untracked
+*.untracked.*
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.old
+*.orig
+*.rej
+*.patch
+Thumbs.db
+.DS_Store
+Icon?
+desktop.ini
+.vscode/*
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-workspace
+.idea/
+*.iml
+*.ipr
+*.iws
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+*.slnx.sqlite
+*.swp
+*.tags
+*.d.ts.map
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+firebase-debug.log
+ui-debug.log
+debug.log
+
+# Node.js
+node_modules/
+.npm/
+.npm-cache/
+.pnpm-debug.log
+.yarn/
+.yarn-cache/
+.yarnrc.yml
+.yarn-error.log
+
+# Dependency directories
+.bower_components
+jspm_packages/
+
+# Build output
+/dist/
+/build/
+/coverage/
+/public/
+/lib/
+/output/
+/out/
+/temp/
+/tmp/
+/.cache/
+/.esbuild/
+/.parcel-cache/
+/.next/
+/.docusaurus/
+/.storybook-out/
+/storybook-static/
+/.vite/
+
+# TypeScript
+*.d.ts
+*.d.ts.map
+*.tsbuildinfo
+
+# Environment
+.env
+.env.*
+.env.local
+.env.*.local
+.env.test
+.env.production
+.env.development
+
+# Testing
+/coverage/
+/reports/
+/test-results/
+/test-outputs/
+/playwright-report/
+/screenshots/
+/screenshots-diff/
+/screenshots-baseline/
+jest-test-results.json
+test-result.xml
+
+# Linting and formatting
+.eslintcache
+.prettiercache
+.stylelintcache
+
+# Miscellaneous tools
+/.husky/
+/.turbo/
+/.turborepo/
+/.dockerignore
+/.docker-compose/
+/docker-compose.override.yml
+/.drizzle
+/.sentryclirc
+
+# IDE files
+.idea/
+/.project
+.classpath
+.c9/
+*.launch
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# CI/CD
+/.circleci/
+/.jenkins/
+/.gitlab-ci.yml
+/.github/
+/.actions-runner
+/_work/
+
+# Documentation
+docs/.docusaurus/
+/docs/dist/
+/docs/manifest.mjs
+docs/.vuepress/dist/
+/docs/_book/
+/docs/_site/
+/mkdocs.yml
+/_book/
+/_site/
+
+# Database
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+.migrations/
+prisma/dev.db
+prisma/migrations
+supabase/.branches
+drizzle/.drizzle
+
+# Frameworks
+# Next.js
+.next/
+next-env.d.ts
+
+# Docusaurus
+docs/.docusaurus
+docs/manifest.mjs
+
+# SvelteKit
+.svelte-kit/
+
+# SolidStart
+solid-start/
+solid-start/.cache
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+*.egg
+*.egg-info
+dist/
+build/
+*.manifest
+
+# Other language-specific files
+*.java
+*.class
+*.jar
+*.war
+*.ear
+*.scala
+*.kt
+*.csproj
+*.obj
+*.dll
+*.pdb
+*.exe
+*.apk
+*.ipa
+
+# CI Artifacts
+*.log
+*.trace
+*.prof
+
+# Logs and reports
+logs/
+*.log
+error.log
+output.log
+*.trace
+debug.log
+.nyc_output/
