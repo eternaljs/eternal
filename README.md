@@ -70,7 +70,7 @@ Here is an example of how to use Eternal:
 In your project directory, create a file named eternal.ts and add the following code:
 
 ```typescript
-import { Eternal } from 'eternal';
+import { Eternal } from '@eternal/core';
 import { GoogleAnalyticsAdapter } from '@eternal/google-analytics-adapter';
 import { FirebaseAuthAdapter } from '@eternal/firebase-auth-adapter';
 
