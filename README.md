@@ -5,6 +5,7 @@
 
 <br />
 
+<h1>Eternal: Make Your Dependencies Eternal</h1>
 <h1>One SDK to Simplify Integrations, Swap Providers Instantly, and Say Goodbye to Breaking Changes.<br />(In Construction)</h1>
 
 
