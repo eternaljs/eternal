@@ -132,6 +132,42 @@ For more details on supported modules and usage, refer to the [Documentation](#)
 
 ---
 
+## Frequently Asked Questions (FAQ)
+
+### What about security and performance?
+Eternal is designed to be lightweight and stateless. It acts as a thin abstraction layer over the SDKs you choose, meaning all security and performance considerations rely on the underlying SDK.
+
+### Isn't it limiting to wrap all APIs? Won't I lose access to native SDK features?
+Not at all! Eternal is designed to give you the best of both worlds. For common use cases, it provides a unified and consistent API, simplifying integration and protecting you from breaking changes. At the same time, if you need advanced or provider-specific features, you can directly access the native SDK alongside Eternal without any restrictions.
+
+In fact, creating internal wrappers for third-party SDKs is a best practice followed by top tech companies. These wrappers ensure consistency, streamline integrations, and make it easier to swap providers or adapt to changes. Eternal brings this proven approach to everyone, so you can focus on building features rather than maintaining custom wrappers.
+
+With Eternal, you benefit from:
+- **A unified API for simplicity**: Handle common use cases with ease.
+- **Full native SDK access for flexibility**: Use advanced features whenever needed.
+
+It’s about having the power to adapt without the overhead of managing everything yourself. Eternal combines simplicity, flexibility, and scalability in one solution.
+
+### Does Eternal support switching providers without rewriting code?
+Yes! Eternal provides a unified API, making it easy to switch between providers by simply updating the adapter configuration. There’s no need to rewrite or restructure your code, saving time and effort.
+
+### How does Eternal handle breaking changes in SDKs?
+When a breaking change occurs in an SDK, Eternal updates the corresponding adapter. This means you only need to update Eternal and its adapter, while your codebase remains untouched.
+
+### What happens if a feature isn’t supported by Eternal’s API?
+Eternal focuses on covering the most common use cases across SDKs. If you need an advanced or specific feature of an SDK, you can still use the native SDK in parallel with Eternal. Alternatively, you can contribute to Eternal’s open-source adapters to include that feature.
+
+### Does using Eternal add overhead?
+Eternal is optimized to add minimal overhead. It’s a lightweight wrapper that focuses on providing consistency and simplicity while delegating the heavy lifting to the underlying SDKs.
+
+### Can I add my own custom adapters?
+Yes, Eternal is designed with extensibility in mind. You can create custom adapters to work with SDKs not currently supported by Eternal or tailor it to specific needs in your project.
+
+### How does Eternal handle asynchronous operations?
+Eternal seamlessly supports asynchronous operations by passing through the SDK’s promises or callbacks. Your application can handle these operations just as it would when directly using the SDK.
+
+---
+
 ## **Contributing**
 
 We welcome contributions! If you have ideas for improvements or new provider integrations, feel free to submit a pull request.

@@ -1,20 +1,20 @@
 import { EternalConfig } from ".";
 import { AnalyticsModule } from "./modules/analytics/analytics-module";
 import { AuthModule } from "./modules/auth/auth-module";
-import { LogModule } from "./modules/log/log-module";
+import { LoggerModule } from "./modules/logger/logger-module";
 import { PaymentModule } from "./modules/payments/payment-module";
 
 export default class Eternal {
   public auth?: AuthModule;
   public payments?: PaymentModule;
   public analytics?: AnalyticsModule;
-  public log?: LogModule;
+  public logger?: LoggerModule;
 
   constructor(config: EternalConfig) {
     if (config.auth) this.auth = config.auth;
     if (config.payments) this.payments = config.payments;
     if (config.analytics) this.analytics = config.analytics;
-    if (config.log) this.log = config.log;
+    if (config.logger) this.logger = config.logger;
   }
 
   addModule<M extends keyof EternalConfig>(
