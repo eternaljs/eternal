@@ -108,12 +108,24 @@ Any many more..
 
 ### **Supported Modules and Providers**
 
+Browser Environment:
+
 | Module      | Supported Providers                         |
 |-------------|---------------------------------------------|
 | Analytics   | Google Analytics, Mixpanel, Segment         |
 | Auth        | FirebaseAuth, Auth0, Okta                   |
 | Storage     | AWS S3, Google Cloud Storage, Azure Blob    |
 | Payments    | Stripe, PayPal, Square                      |
+| HTTP Clients      | `axios`, `node-fetch`, `superagent`, `request`                                                                                                                                                                                         |
+
+**Node.js Environment:**
+
+| Module            | Supported Providers                                                                                                                                                                                                                   |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Databases         | MySQL (`mysql`, `mysql2`), PostgreSQL (`pg`), MongoDB (`mongodb`), SQLite (`sqlite3`), Redis (`redis`), Sequelize (`sequelize`), Knex.js (`knex`)                                                                                     |
+| Streams           | Apache Kafka (kafkajs, node-rdkafka), RabbitMQ (amqplib, rascal), Amazon Kinesis (aws-sdk), Apache Pulsar (pulsar-client) |
+| Task Scheduling   | `node-cron`, `agenda`, `bull`, `node-schedule`                                                                                                                                                                                         |
+| Logging           | `winston`, `bunyan`, `morgan`, `pino`                                                                                                                                                                                                  |
 
 For more details on supported modules and usage, refer to the [Documentation](#).
 
