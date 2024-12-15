@@ -67,7 +67,6 @@ Here is an example of how to use Eternal:
 
 #### **Initialize the SDK**
 
-Create a File Named eternal.ts
 In your project directory, create a file named eternal.ts and add the following code:
 
 ```typescript
@@ -86,8 +85,8 @@ const eternal = new Eternal({
 
 // Default export with custom named properties for easier imports
 export default {
-  analytics: sdk.analytics,
-  auth: sdk.auth,
+  analytics: eternal.analytics,
+  auth: eternal.auth,
 };
 
 ```
