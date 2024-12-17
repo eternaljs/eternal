@@ -1,6 +1,6 @@
 import swc from "unplugin-swc";
 import { loadEnv } from "vite";
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vitest/config.js";
 
 export default defineConfig({
   test: {

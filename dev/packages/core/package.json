@@ -2,25 +2,25 @@
   "name": "eternal",
   "version": "0.0.1",
   "description": "",
+  "author": "Eternal",
+  "license": "Apache-2.0",
+  "type": "module",
   "main": "dist/index.cjs",
   "module": "lib/index.js",
   "types": "dist/index.d.ts",
-  "author": "",
-  "license": "",
   "bugs": {
-    "url": "https://github.com/dvir-daniel/eternal/issues"
+    "url": "https://github.com/eternaljs/eternal/issues"
   },
-  "homepage": "https://github.com/dvir-daniel/eternal#readme",
+  "homepage": "https://github.com/eternaljs/eternal#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dvir-daniel/eternal.git"
+    "url": "git+https://github.com/eternaljs/eternal.git"
   },
   "keywords": [
     "typescript",
     "library",
     "template"
   ],
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsup src/index.ts --minify --tsconfig tsconfig.prod.json --dts --format cjs,esm --out-dir dist",

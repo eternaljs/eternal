@@ -3,14 +3,6 @@ import { LogFormatter, LoggerErrorHandler, LogLevel, Transport } from "./logger-
 
 /**
  * A unified, logger interface.
- * 
- * Features:
- * - Strongly typed levels via enum.
- * - Async log methods.
- * - Support for formatters and transports.
- * - Child loggers that prepend a prefix.
- * - Lifecycle management (flush and close).
- * - Explicit error handling via onError callback.
  */
 export interface LoggerAdapter {
   /**

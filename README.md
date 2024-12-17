@@ -1,6 +1,6 @@
 <div align="center">
   <a href="">
-    <img src="https://github.com/dvir-daniel/eternal/blob/main/media/cover.png" alt="Logo">
+    <img src="https://github.com/dvir-daniel/eternal/blob/main/media/cover.png?a=a" alt="Logo">
   </a>
 
 <br />
