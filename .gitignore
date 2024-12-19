@@ -76,7 +76,7 @@ jspm_packages/
 /.storybook-out/
 /storybook-static/
 /.vite/
-/.turbo/
+.turbo/
 
 # TypeScript
 *.d.ts
