@@ -1,5 +1,6 @@
-import winston, { Logger as WinstonLogger, format } from 'winston';
+import { Logger as WinstonLogger, format } from 'winston';
 import { LoggerAdapter, LogLevel, LogEntry, LogFormatter, LoggerErrorHandler, Transport } from './logger-global';
+import winston = require('winston');
 
 const LOG_LEVEL_TO_WINSTON: Record<LogLevel, string> = {
   [LogLevel.Fatal]: 'error',

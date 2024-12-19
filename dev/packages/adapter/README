@@ -1,1 +1,2 @@
-
+Packages ordred by environment.
+Packages that can run on both environments(browser and node) are in "universal" folder

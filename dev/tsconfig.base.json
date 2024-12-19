@@ -18,7 +18,7 @@
         "packages/core/*"
       ],
       "@eternal/logger-winston": [
-        "packages/adapter/logger-winston/src/index.ts"
+        "packages/adapter/browser/logger-winston/src/index.ts"
       ]
     },
     "types": [

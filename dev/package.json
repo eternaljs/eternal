@@ -1,6 +1,10 @@
 {
-  "name": "eternal",
+  "name": "eternal-js",
   "private": true,
+  "workspaces": [
+    "packages/core",
+    "packages/adapters/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
