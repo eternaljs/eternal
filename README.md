@@ -49,11 +49,11 @@ With **Eternal**, the future of your app is in your hands, not your provider’s
 Step 1: Install Eternal using npm or yarn:
 
 ```bash
-npm install eternal
+npm install eternal-js
 # or
-yarn add eternal
+yarn add eternal-js
 # or
-pnpm add eternal
+pnpm add eternal-js
 ```
 
 Step 2: To use specific providers (e.g., Google Analytics, FirebaseAuth, Stripe), install their adapters as well. 
@@ -70,9 +70,9 @@ Here is an example of how to use Eternal:
 In your project directory, create a file named eternal.ts and add the following code:
 
 ```typescript
-import { Eternal } from '@eternal/core';
-import { GoogleAnalyticsAdapter } from '@eternal/google-analytics-adapter';
-import { FirebaseAuthAdapter } from '@eternal/firebase-auth-adapter';
+import { Eternal } from '@eternal-js/core';
+import { GoogleAnalyticsAdapter } from '@eternal-js/google-analytics-adapter';
+import { FirebaseAuthAdapter } from '@eternal-js/firebase-auth-adapter';
 
 const eternal = new Eternal({
   analytics: new AnalyticsModule({
