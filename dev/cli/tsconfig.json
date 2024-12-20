@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+   "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "outDir": "./bin",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true
+  }
+}

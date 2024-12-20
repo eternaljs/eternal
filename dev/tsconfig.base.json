@@ -21,9 +21,6 @@
         "packages/adapter/browser/logger-winston/src/index.ts"
       ]
     },
-    "types": [
-      "vitest/globals"
-    ]
   },
   "exclude": [
     "node_modules",

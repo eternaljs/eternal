@@ -1,4 +1,3 @@
-import { Logger } from "vite";
 import { LogFormatter, LoggerErrorHandler, LogLevel, Transport } from "./logger-global";
 
 /**
@@ -74,7 +73,7 @@ export interface LoggerAdapter {
    * @param prefix A string to prepend to all messages logged by the child.
    * @returns A new logger instance with prefixed messages.
    */
-  child(prefix: string): Logger;
+  child(prefix: string): LoggerAdapter;
 
   /**
    * Adds a transport for writing log entries.

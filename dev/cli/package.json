@@ -1,0 +1,41 @@
+{
+    "name": "@eternal-js/cli",
+    "version": "0.0.4",
+    "description": "Eternal CLI: Make Your Dependencies Eternal. Learn more at: https://eternaljs.com",
+    "type": "module",
+    "exports": "./index.js",
+    "node": ">=18",
+    "bin": {
+        "eternal": "bin/eternal.js"
+    },
+    "files": [
+        "bin/",
+        "README.md"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "start": "node bin/eternal.js"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2",
+        "commander": "^10.0.0",
+        "inquirer": "^12.2.0",
+        "ora": "^7.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^22.10.2",
+        "typescript": "^5.0.0"
+    },
+    "keywords": [
+        "eternal",
+        "cli",
+        "third-party integrations",
+        "sdk"
+    ],
+    "license": "AGPL-3.0",
+    "author": "",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/eternaljs/eternal"
+    }
+}

@@ -1,6 +1,9 @@
+import { LoggerAdapter, LogLevel, LogEntry, LogFormatter, LoggerErrorHandler, Transport } from '@eternal-js/core';
+
+import winston from 'winston';
+import WinstonTransport from 'winston-transport';
 import { Logger as WinstonLogger, format } from 'winston';
-import { LoggerAdapter, LogLevel, LogEntry, LogFormatter, LoggerErrorHandler, Transport } from './logger-global';
-import winston = require('winston');
+import TransportStream from 'winston-transport';
 
 const LOG_LEVEL_TO_WINSTON: Record<LogLevel, string> = {
   [LogLevel.Fatal]: 'error',
@@ -25,7 +28,7 @@ const WINSTON_TO_LOG_LEVEL: Record<string, LogLevel> = {
 export class WinstonLoggerAdapter implements LoggerAdapter {
   private winstonLogger: WinstonLogger;
   private currentLevel: LogLevel = LogLevel.Info;
-  private transportsList: { original: Transport; winstonTransport: winston.Transport }[] = [];
+  private transportsList: { original: Transport; winstonTransport: winston.transport }[] = [];
   private formattersList: LogFormatter[] = [];
   private errorHandler?: LoggerErrorHandler;
   private prefix?: string;
@@ -46,7 +49,7 @@ export class WinstonLoggerAdapter implements LoggerAdapter {
       })(),
       // Apply our formatters
       format((info) => {
-        let entry: LogEntry = { level: this.mapWinstonToOurLevel(info.level), message: info.message };
+        let entry: LogEntry = { level: this.mapWinstonToOurLevel(info.level), message: info.message as string };
         for (const f of this.formattersList) {
           entry = f.format(entry);
         }
@@ -126,7 +129,7 @@ export class WinstonLoggerAdapter implements LoggerAdapter {
     this.winstonLogger.level = LOG_LEVEL_TO_WINSTON[level];
   }
 
-  child(prefix: string): LoggerAdapter {
+  child(prefix: string): LoggerAdapter  {
     const childLogger = new WinstonLoggerAdapter(prefix);
     childLogger.currentLevel = this.currentLevel;
     childLogger.transportsList = [...this.transportsList];
@@ -135,6 +138,7 @@ export class WinstonLoggerAdapter implements LoggerAdapter {
     childLogger.rebuildLogger();
     return childLogger;
   }
+
 
   addTransport(transport: Transport): void {
     const wTransport = this.createWinstonTransport(transport);
@@ -177,35 +181,37 @@ export class WinstonLoggerAdapter implements LoggerAdapter {
   }
 
   async close(): Promise<void> {
-    // Close all transports that have a close method.
-    await Promise.all(
-      this.transportsList.map(t => t.winstonTransport.close?.())
-        .filter((p): p is Promise<void> => p instanceof Promise)
-    );
+   
   }
 
-  private createWinstonTransport(transport: Transport): winston.Transport {
-    class CustomWinstonTransport extends winston.Transport {
-      constructor(private customTransport: Transport) {
-        super({ silent: false });
-      }
+  private createWinstonTransport(transport: any): WinstonTransport {
+    return new CustomWinstonTransport(transport, { });
+  }
+  
+}
 
-      log(info: any, next: () => void): void {
-        const { level, message } = info;
-        const entry: LogEntry = {
-          level: WINSTON_TO_LOG_LEVEL[level] ?? LogLevel.Info,
-          message
-        };
-        this.customTransport.write(entry).finally(next);
-      }
+class CustomWinstonTransport extends WinstonTransport {
+  private customTransport: any;
 
-      async close(): Promise<void> {
-        if (this.customTransport.close) {
-          await this.customTransport.close();
-        }
-      }
+  constructor(customTransport: any, opts: TransportStream.TransportStreamOptions) {
+    super(opts); // Pass options to the parent class constructor
+    this.customTransport = customTransport; // Set the custom transport
+  }
+
+  log(info: any, callback: () => void): void {
+    const { level, message } = info;
+    const entry: LogEntry = {
+      level: WINSTON_TO_LOG_LEVEL[level] ?? LogLevel.Info,
+      message
+    };
+
+    // Assuming customTransport has a write method that accepts LogEntry
+    this.customTransport.write(entry).finally(callback);
+  }
+
+  async close(): Promise<void> {
+    if (this.customTransport.close) {
+      await this.customTransport.close();
     }
-
-    return new CustomWinstonTransport(transport);
   }
 }

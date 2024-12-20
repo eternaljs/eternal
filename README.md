@@ -1,17 +1,24 @@
 <div align="center">
   <a href="">
-    <img src="https://github.com/dvir-daniel/eternal/blob/main/media/cover.png?a=a" alt="Logo">
+    <img src="https://github.com/eternaljs/eternal/blob/main/media/cover%2Bicon.png" alt="Logo">
   </a>
 
 <br />
 
 <h1>Eternal: Make Your Dependencies Eternal</h1>
-<h1>One SDK to Simplify Integrations, Swap Providers Instantly, and Say Goodbye to Breaking Changes.<br />(In Construction)</h1>
+<h1>Simplify Integrations, Swap Providers Instantly, and Say Goodbye to Breaking Changes.<br />(In Construction)</h1>
 
 
-Eternal is a modular framework that empowers developers to integrate third-party services effortlessly, switch providers without disruption, and ensure your app stays future-proof—no matter how the APIs or technologies evolve. It enables developers to interact with a single unified API, allowing for seamless upgrades, provider switching, and improved developer experience.
+Eternal is a modular framework that empowers developers to integrate third-party services effortlessly, switch providers without disruption, and ensure your app stays future-proof—no matter how the APIs or technologies evolve. It enables developers to interact with a single unified API and CLI tool, allowing for seamless upgrades, provider switching, and improved developer experience.
 
 </div>
+
+<h3 align="center">
+  <a href="https://eternaljs.com">Website</a>
+  | <a href="https://docs.eternaljs.com">Docs</a>
+  | <a href="https://discord.gg/pTmBqXpw">Team Discord</a>
+  | <a href="https://www.npmjs.com/org/eternal-js">NPM</a>
+</h3>
 
 <br />
 
@@ -44,79 +51,90 @@ With **Eternal**, the future of your app is in your hands, not your provider’s
 
 ## **Getting Started**
 
-### **Installation**
+Here's how to get started with Eternal:
 
-Step 1: Install Eternal using npm or yarn:
+1. **Initialize Your Project**  
+   Use the Eternal CLI to create the required configuration file. If you haven't already, run the following command in your project directory:
+   ```bash
+   npx @eternal-js/cli init
+   ```
 
-```bash
-npm install eternal-js
-# or
-yarn add eternal-js
-# or
-pnpm add eternal-js
-```
+2. **Open the Generated File**  
+   The CLI will create a file named `eternal.ts` in your project directory. Open it to explore and customize the configuration as needed.
 
-Step 2: To use specific providers (e.g., Google Analytics, FirebaseAuth, Stripe), install their adapters as well. 
-Check the documentation for available adapters and installation commands.
+3. **Sample Configuration in `eternal.ts`**  
+   The generated file will look something like this:
+   ```typescript
+   import { Eternal, AnalyticsModule, AuthModule } from '@eternal-js/core';
+   import { MixPanelAdapter } from '@eternal-js/mixpanel-adapter';
+   import { AuthJsAdapter } from '@eternal-js/auth-adapter';
 
-<a href="">Click Here To Add Adapters</a>
+   const eternal = new Eternal({
+     analytics: new AnalyticsModule({
+       adapter: new MixPanelAdapter({
+         config: { apiKey: 'your-mixpanel-api-key' },
+         extension: (mixpanel) => ({
+           advancedUseCase1() {
+             mixpanel.track('Custom Event', { data: 'example' });
+           },
+         }),
+       }),
+     }),
+     auth: new AuthModule({
+       adapter: new AuthJsAdapter({ apiKey: 'your-authjs-api-key' }),
+     }),
+   });
 
-### **Usage**
+   export default {
+     analytics: eternal.analytics,
+     auth: eternal.auth,
+   };
+   ```
 
-Here is an example of how to use Eternal:
+4. **Use the SDK in Your Project**  
+   Now you can easily use Eternal modules in your application:
+   ```typescript
+   import { auth, analytics } from './eternal';
 
-#### **Initialize the SDK**
+   // Track an analytics event
+   analytics?.track('user_signup', { method: 'email' });
 
-In your project directory, create a file named eternal.ts and add the following code:
+   // Authenticate a user
+   auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
+   ```
 
-```typescript
-import { Eternal } from '@eternal-js/core';
-import { GoogleAnalyticsAdapter } from '@eternal-js/google-analytics-adapter';
-import { FirebaseAuthAdapter } from '@eternal-js/firebase-auth-adapter';
+5. **Customize and Extend**  
+   Edit the `eternal.ts` file to:
+   - Add new modules (e.g., Database, Logger).
+   - Switch adapters (e.g., from MixPanel to Google Analytics).
+   - Extend modules for advanced use cases.
 
-const eternal = new Eternal({
-  analytics: new AnalyticsModule({
-    adapter: new MixPanelAdapter({ apiKey: 'your-google-api-key' }),
-  }),
-  auth: new AuthModule({
-    adapter: new AuthJsAdapter({ apiKey: 'your-firebase-api-key' }),
-  }),
-});
+6. **Effortless Upgrades with Community Support**  
+   Upgrading your dependencies to the latest APIs is now seamless with Eternal. Instead of rewriting code or struggling with breaking changes, Eternal ensures that your integrations stay compatible effortlessly.  
 
-// Default export with custom named properties for easier imports
-export default {
-  analytics: eternal.analytics,
-  auth: eternal.auth,
-};
+   The Eternal community continuously maintains and updates adapters whenever third-party providers release new APIs or make breaking changes. These updates are rigorously tested and made available to everyone.  
 
-```
+   To upgrade, simply run:  
+   ```bash
+   npx @eternal-js/cli upgrade
+   ```  
+   This command fetches the latest adapters and updates your configuration automatically, ensuring your code works smoothly with the newest versions.  
 
-#### **Using the SDK**
+   With Eternal, you can stay focused on building your project while the community handles the heavy lifting of keeping your integrations future-proof. 🚀  
 
-```typescript
-import { analytics, auth } from './eternal';
-
-// Track an event
-analytics?.track('user_signup', { method: 'email' });
-
-// Authenticate a user
-auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
-
-Any many more..
-```
-
+----
 
 ### **Supported Modules and Providers**
 
 Browser Environment:
 
-| Module      | Supported Providers                         |
-|-------------|---------------------------------------------|
-| Analytics   | Google Analytics, Mixpanel, Segment         |
-| Auth        | FirebaseAuth, Auth0, Okta                   |
-| Storage     | AWS S3, Google Cloud Storage, Azure Blob    |
-| Payments    | Stripe, PayPal, Square                      |
-| HTTP Clients      | `axios`, `node-fetch`, `superagent`, `request`                                                                                                                                                                                         |
+| Module         | Supported Providers                             |
+|----------------|-----------------------------------------------------------|
+| Analytics      | Google Analytics, Mixpanel, Segment                       |
+| Auth           | Authjs, Supabase, FirebaseAuth, Auth0, Clerk, Stack-Auth  |
+| Storage        | AWS S3, Google Cloud Storage, Azure Blob                  |
+| Payments       | Stripe, PayPal, Square                                    |
+| HTTP Clients   | `axios`, `node-fetch`, `superagent`, `request`            |                                                                                                                                                                    
 
 **Node.js Environment:**
 
@@ -189,8 +207,8 @@ This project is licensed under the Apache 2.0 License. See the `LICENSE` file fo
 ## **Contact**
 
 Have questions or feedback? Reach out to us:
-- Email: support@eternalsdk.com
-- GitHub Issues: [GitHub Issues](https://github.com/dvir-daniel/eternal/issues)
+- Email: contact@eternaljs.com
+- GitHub Issues: [GitHub Issues](https://github.com/eternaljs/eternal/issues)
 
 ---
 

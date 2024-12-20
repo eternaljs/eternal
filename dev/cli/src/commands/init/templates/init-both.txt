@@ -1,0 +1,102 @@
+/**
+ * Eternal Configuration File
+ * 
+ * This file serves as the central configuration for all your third-party integrations.
+ * Eternal simplifies your project by unifying APIs and providing flexibility in managing
+ * dependencies like analytics, authentication, databases, logging, and more.
+ * 
+ * Documentation: https://eternaljs.com
+ */
+
+import { Eternal, AnalyticsModule, AuthModule, LoggerModule } from '@eternal-js/core';
+// Import the adapters for the services you want to use. Uncomment after installing.
+// Examples:
+// import { MixPanelAdapter } from '@eternal-js/mixpanel-adapter';
+// import { AuthJsAdapter } from '@eternal-js/auth-adapter';
+// import { WinstonAdapter } from '@eternal-js/winston-adapter';
+
+/**
+ * Configure Eternal with the adapters your project requires.
+ * 
+ * Each module corresponds to a specific category (e.g., Analytics, Auth, Logging).
+ * Adapters are used to integrate Eternal with third-party services.
+ * 
+ * Replace the examples below with the adapters and configurations for the services you use.
+ */
+const eternal = new Eternal({
+  // Analytics Module: Use to track user behavior, events, and metrics.
+  // Uncomment and replace with your preferred analytics adapter.
+  // analytics: new AnalyticsModule({
+  //   adapter: new MixPanelAdapter({
+  //     config: { apiKey: 'your-mixpanel-api-key' },
+  //     extension: (mixpanel) => ({
+  //       // Extend functionality with advanced use cases.
+  //       advancedUseCase1() {
+  //         mixpanel.track('Custom Event', { data: 'example' });
+  //       },
+  //     }),
+  //   }),
+  // }),
+
+  // Auth Module: Manage user authentication and sessions.
+  // Uncomment and replace with your preferred auth adapter.
+  // auth: new AuthModule({
+  //   adapter: new AuthJsAdapter({
+  //     apiKey: 'your-authjs-api-key',
+  //   }),
+  // }),
+
+  // Logger Module: Handle application logging and log management.
+  // Uncomment and replace with your preferred logging adapter.
+  // logger: new LoggerModule({
+  //   adapter: new WinstonAdapter({
+  //     level: 'info', // Set the log level (e.g., 'info', 'debug', 'error').
+  //     transports: [], // Add specific transports if needed.
+  //   }),
+  // }),
+});
+
+/**
+ * Export the configured Eternal instance for use throughout your project.
+ * This centralizes all your third-party integrations, making them easily accessible.
+ */
+export default {
+  auth: eternal.auth,
+  payments: eternal.payments,
+  analytics: eternal.analytics,
+  logger: eternal.logger,
+};
+
+/**
+ * How to Use:
+ * 
+ * The configuration provided above is an example setup to help you get started.
+ * Eternal supports many other adapters for different services. You can explore 
+ * all available adapters at: https://eternaljs.com/docs
+ * 
+ * Steps:
+ * 1. Install the necessary adapters for the modules you want to use:
+ *    - For analytics (example): `npm install @eternal-js/mixpanel-adapter`
+ *    - For authentication (example): `npm install @eternal-js/auth-adapter`
+ *    - For logging (example): `npm install @eternal-js/winston-adapter`
+ * 
+ *    These examples use MixPanel, Auth.js, and Winston, but you can choose from
+ *    a variety of adapters listed in the Eternal documentation.
+ * 
+ * 2. Uncomment the relevant sections in the configuration and replace the 
+ *    placeholder values (e.g., API keys) with your service credentials.
+ * 
+ * 3. Use the `eternal` instance in your project:
+ * 
+ * Example:
+ * import { analytics, auth } from './eternal';
+ * 
+ * // Track an analytics event
+ * analytics?.track('user_signup', { method: 'email' });
+ * 
+ * // Authenticate a user
+ * auth?.signInWithEmailAndPassword('user@example.com', 'securePassword');
+ * 
+ * For more adapters and detailed instructions, visit:
+ * https://eternaljs.com/docs
+ */

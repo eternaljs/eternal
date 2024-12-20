@@ -59,24 +59,25 @@ node_modules/
 jspm_packages/
 
 # Build output
-/dist/
-/build/
-/coverage/
-/public/
-/lib/
-/output/
-/out/
-/temp/
-/tmp/
-/.cache/
-/.esbuild/
-/.parcel-cache/
-/.next/
-/.docusaurus/
-/.storybook-out/
-/storybook-static/
-/.vite/
+dist/
+build/
+coverage/
+public/
+lib/
+output/
+out/
+temp/
+tmp/
+.cache/
+.esbuild/
+.parcel-cache/
+.next/
+.docusaurus/
+.storybook-out/
+storybook-static/
+.vite/
 .turbo/
+bin/
 
 # TypeScript
 *.d.ts
