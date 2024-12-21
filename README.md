@@ -184,20 +184,77 @@ Yes, Eternal is designed with extensibility in mind. You can create custom adapt
 ### How does Eternal handle asynchronous operations?
 Eternal seamlessly supports asynchronous operations by passing through the SDK’s promises or callbacks. Your application can handle these operations just as it would when directly using the SDK.
 
+Here's the updated README section with the command to create a new migration:
+
 ---
 
 ## **Contributing**
 
-We welcome contributions! If you have ideas for improvements or new provider integrations, feel free to submit a pull request.
+We welcome contributions from developers like you! Whether it’s improving Eternal, fixing bugs, or adding new migrations, every contribution makes a difference. Here's how you can get involved:
 
-### Steps to Contribute:
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Commit your changes with clear messages.
-4. Submit a pull request.
+
+### **General Contribution Guidelines**
+
+1. **Fork the Repository**: Start by forking the Eternal repository to your GitHub account.
+2. **Create a New Branch**: Use a descriptive branch name, such as `feature/new-analytics-adapter` or `bugfix/auth-issue`.
+3. **Make Your Changes**: Implement your changes while following the repository’s code style and structure.
+4. **Commit Your Changes**: Use clear and concise commit messages, e.g., `Add support for XYZ feature`.
+5. **Submit a Pull Request**: Open a pull request to the main repository with a detailed description of your changes.
+
+
+### **How to Add a New Migration**
+
+Eternal's upgrade process relies on migrations to handle API changes automatically. Follow these steps to create and contribute a new migration:
+
+#### 1. **Generate a New Migration File**
+Use the CLI to generate a migration template:
+```bash
+npx @eternal-js/cli contributor new-migration
+```
+
+- This will create a new migration file in the `migrations` directory with a timestamp-based filename (e.g., `migration-20231219-add-new-feature.ts`).
+- The file includes placeholders and examples to help you define the migration logic.
+
+#### 2. **Fill Out the Migration Template**
+Open the generated file and complete the required sections:
+
+- **Meta**:
+  - Provide details like `id`, `description`, `createdAt`, and `author`.
+  - Example: `author: "your-github-username"`.
+- **Target Files**:
+  - Define the files that should be included based on the project structure or framework.
+- **Conditions**:
+  - Specify validation logic to determine when the migration applies.
+- **Transform**:
+  - Write the transformation logic using Babel to update the source code. Use the `sourceCode`, `filePath`, and `context` parameters for precise transformations.
+
+#### 3. **Test Your Migration**
+Ensure your migration works as expected:
+- Run the migration locally:
+  ```bash
+  npx @eternal-js/cli upgrade
+  ```
+- Confirm the migration updates the relevant files correctly and does not introduce errors.
+
+#### 4. **Document the Migration**
+Add comments in the migration file to explain:
+- The purpose of the migration.
+- The scenarios it addresses.
+- Any important considerations or edge cases.
+
+#### 5. **Submit Your Migration**
+Once your migration is ready:
+1. Commit your changes with a descriptive message, e.g., `Add migration to update AuthModule API to v2.0.0`.
+2. Open a pull request with a detailed description of the migration logic and its use case.
+
+
+### **Join the Community**
+- **Discord**: Connect with other contributors and maintainers on our [Discord server](https://discord.gg/pTmBqXpw).
+- **GitHub Issues**: Report bugs or suggest new features via [GitHub Issues](https://github.com/eternaljs/eternal/issues).
+
+By contributing to Eternal, you're helping developers worldwide build better, future-proof integrations. Thank you for your support!
 
 ---
-
 ## **License**
 
 This project is licensed under the Apache 2.0 License. See the `LICENSE` file for details.
