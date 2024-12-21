@@ -1,0 +1,132 @@
+/**
+ * Migration Template File
+ * 
+ * Use this file as a template for creating new migration scripts. 
+ * Replace placeholders with actual values based on your migration requirements.
+ * 
+ * Documentation: https://eternaljs.com/docs/migration
+ */
+
+import { MigrationContext } from "../context"; // Import shared context type
+import { MigrationFile } from "../types"; // Import the MigrationFile type
+
+export const migration = {
+  /**
+   * Metadata for the migration.
+   * Provides essential details about the migration for tracking and versioning purposes.
+   */
+  meta: {
+    id: "migration-[TIMESTAMP]-[MIGRATION_DESCRIPTION]", // Unique ID (e.g., "migration-20231220-auth-signin-update")
+    description: "Migrate `[OLD_FUNCTION]` to `[NEW_FUNCTION]` API format.", // Description (e.g., "Migrate `auth.signInWith` to `auth.signIn` API format.")
+    createdAt: "[CREATION_DATE]", // Date the migration was created (e.g., "2023-12-20")
+    author: "[AUTHOR_GITHUB_USERNAME]", // Author of the migration (e.g., "marco-rosso")
+    before: "[CODE_BEFORE_MIGRATION]", // Code snippet before migration (e.g., "auth.signInWith(param1, param2);")
+    after: "[CODE_AFTER_MIGRATION]", // Code snippet after migration (e.g., "auth.signIn({ param1, param2 });")
+  },
+
+  /**
+   * Target files to process during migration.
+   * Determines the files where the migration logic will be applied.
+   * 
+   * @param context - The shared migration context.
+   * @returns An array of file patterns to process.
+   */
+  targetFiles: (context: MigrationContext): string[] => {
+    // Example logic for targeting files based on framework
+    return context.framework === "next.js" ? ["pages/**/*.ts"] : ["src/**/*.ts"];
+  },
+
+  conditions: {
+    /**
+     * Validate if a file should be processed.
+     * This checks if the file contains the specific function or pattern for migration.
+     * 
+     * @param filePath - The path of the file.
+     * @param fileContent - The content of the file.
+     * @returns A boolean indicating whether the file is valid for migration.
+     */
+    validateFile: async (filePath: string, fileContent: string): Promise<boolean> => {
+      // Replace with the pattern you're validating against
+      return fileContent.includes("[OLD_FUNCTION]"); // Example: "auth.signInWith"
+    },
+
+    /**
+     * Validate if the migration applies to the current context.
+     * This checks the adapter, framework, and runtime details.
+     * 
+     * @param context - The shared migration context.
+     * @returns A boolean indicating whether the migration should proceed.
+     */
+    validateContext: async (context: MigrationContext): Promise<boolean> => {
+      const { adapterName, adapterVersion, framework, runtime } = context;
+
+      // Validate adapter name and version
+      const adapterCheck =
+        adapterName === "[ADAPTER_NAME]" && adapterVersion >= "[ADAPTER_MIN_VERSION]";
+      // Example: adapterName === "@eternal-js/auth-adapter" && adapterVersion >= "2.0.0";
+
+      // Validate framework and runtime compatibility
+      const frameworkCheck = ["next.js", "express"].includes(framework); // Example: "next.js"
+      const runtimeCheck = runtime === "[EXPECTED_RUNTIME]"; // Example: "node"
+
+      return adapterCheck && frameworkCheck && runtimeCheck;
+    },
+  },
+
+  transform: {
+    /**
+     * Transformation logic to migrate the source code.
+     * This function rewrites old code to the new API format.
+     * 
+     * @param file - An object containing `sourceCode` and `filePath`.
+     * @param context - Additional context for the migration.
+     * @param babel - Babel API for parsing and transforming code.
+     * @returns The transformed source code.
+     */
+    transformCode: (
+      file: MigrationFile,
+      context: MigrationContext,
+      babel: any
+    ): string => {
+      const { sourceCode, filePath } = file;
+      const { parse, traverse, generate } = babel;
+
+      console.log(`Processing file: ${filePath}...`);
+
+      const ast = parse(sourceCode, { sourceType: "module", plugins: ["typescript"] });
+
+      traverse(ast, {
+        CallExpression(path) {
+          if (
+            path.node.callee.type === "MemberExpression" &&
+            path.node.callee.object.name === "[OBJECT_NAME]" && // Example: "auth"
+            path.node.callee.property.name === "[OLD_FUNCTION]" // Example: "signInWith"
+          ) {
+            const [param1, param2] = path.node.arguments;
+
+            console.log(
+              `Transforming '[OBJECT_NAME].[OLD_FUNCTION]' to '[OBJECT_NAME].[NEW_FUNCTION]' in file: ${filePath}`
+            ); // Example: "auth.signInWith" -> "auth.signIn"
+
+            path.replaceWith(
+              babel.types.callExpression(
+                babel.types.memberExpression(
+                  babel.types.identifier("[OBJECT_NAME]"), // Example: "auth"
+                  babel.types.identifier("[NEW_FUNCTION]") // Example: "signIn"
+                ),
+                [
+                  babel.types.objectExpression([
+                    babel.types.objectProperty(babel.types.identifier("param1"), param1),
+                    babel.types.objectProperty(babel.types.identifier("param2"), param2),
+                  ]),
+                ]
+              )
+            );
+          }
+        },
+      });
+
+      return generate(ast, {}).code;
+    },
+  },
+};

@@ -13,10 +13,11 @@
         "README.md"
     ],
     "scripts": {
-        "build": "tsc",
+        "build": "tsc && copyfiles -u 1 'src/**/templates/*.txt' bin/",
         "start": "node bin/eternal.js"
     },
     "dependencies": {
+        "@eternal-js/core": "^0.0.1",
         "chalk": "^4.1.2",
         "commander": "^10.0.0",
         "inquirer": "^12.2.0",
@@ -24,6 +25,7 @@
     },
     "devDependencies": {
         "@types/node": "^22.10.2",
+        "copyfiles": "^2.4.1",
         "typescript": "^5.0.0"
     },
     "keywords": [

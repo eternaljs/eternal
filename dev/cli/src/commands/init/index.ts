@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import ora from 'ora';
 import { execSync } from 'child_process';
+import { fileURLToPath } from 'url';
 
 export const initCommand = new Command('init')
   .description('Initialize Eternal in your project')
@@ -65,8 +66,12 @@ export const initCommand = new Command('init')
     const spinner = ora(chalk.blue('Generating your Eternal file...')).start();
     await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate loading
 
+    // Get the directory of the current script
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
     // Step 5: Load and Modify Template
-    const templatePath = path.resolve(`./templates/init-${answers.environment}.txt`);
+    const templatePath = path.resolve(__dirname, `./templates/init-${answers.environment}.txt`);
     if (!fs.existsSync(templatePath)) {
       spinner.fail(chalk.red('Template file not found.'));
       return;
