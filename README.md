@@ -14,9 +14,12 @@ Eternal is a modular framework that empowers developers to integrate third-party
 </div>
 
 <h3 align="center">
-  <a href="https://eternaljs.com">Website</a>
-  | <a href="https://docs.eternaljs.com">Docs</a>
-  | <a href="https://discord.gg/pTmBqXpw">Team Discord</a>
+<!--   <a href="https://eternaljs.com">Website</a>
+  | <a href="https://docs.eternaljs.com">Docs</a> -->
+
+<!--    | -->
+  
+  <a href="https://discord.gg/pTmBqXpw">Team Discord</a>
   | <a href="https://www.npmjs.com/org/eternal-js">NPM</a>
 </h3>
 
